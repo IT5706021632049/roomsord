@@ -14,7 +14,7 @@
         border-radius: 15px;">
       </div>
         <br>
-        <h1 style="font-size: 20px;  font-family: 'Kanit', sans-serif;margin-top: -15%;margin-left: -5%;">เข้าสู่ระบบ</h1><br>
+        <h1 style="font-size: 20px;  font-family: 'Kanit', sans-serif;margin-top: -55%;margin-left: -5%;">เข้าสู่ระบบ</h1><br>
         <h3 style="=font-family: 'Kanit', sans-serif; font-size: 15px; font-weight: bold;margin-top: 1%;margin-left: -60%;">E-mail : &nbsp&nbsp</h3>
       <div>
         <input v-model="idlogin" class="label"  style=
@@ -23,7 +23,7 @@
         text-align: center;
         height: 35px;
         margin-left: 8%;
-        margin-top: -2%;
+        margin-top: -7%;
         font-family: 'Kanit', sans-serif;
         font-size: 12px;
         border-radius: 5px;"
@@ -36,7 +36,7 @@
         text-align: center;
         height: 35px;
         margin-left: 8%;
-        margin-top: -2%;
+        margin-top: -7%;
         font-family: 'Kanit', sans-serif;
         font-size: 16px;
         border-radius: 5px;"
@@ -48,7 +48,7 @@
         font-size: 16px;
         font-weight: bold;
         margin-left: -2%;
-        margin-top: -1%;
+        margin-top: -4%;
         font-family: 'Kanit', sans-serif;">
         ยืนยัน</button>
   </div>
@@ -227,7 +227,7 @@
       font-size: 14px;
       margin-top: -2%;
       margin-right: 5%;" align="right" >ห้องโสตทัศนูปกรณ์ มหาวิทยาลัยพระจอมเกล้าพระนครเหนือ วิทยาเขต ปราจีนบุรี</h1>
-      <button @click = "showhistory()" class="button is-warning" style="font-family: 'Kanit', sans-serif; margin-left: 35%;margin-top: 2%;" >ดูประวัติการยืม-คืน</button>
+      <button @click = "showhistory()" class="button is-primary" style="font-family: 'Kanit', sans-serif; margin-left: 35%;margin-top: 2%;" >ดูประวัติการยืม-คืน</button>
       <button  @click = "checklogout()" class="button is-danger" style="font-family: 'Kanit', sans-serif;  margin-left: 70%; font-size: 14px; margin-top: -9%;">ออกจากระบบ</button>
       <hr style="width: 80%; background-color: orange;" >
       <div style="margin-left: 5%;">
@@ -251,7 +251,7 @@
           font-size: 14px;"
           placeholder="Password"></div>
           </h1>
-          <button @click = "addUser()" class="button is-warning" style="font-family: 'Kanit', sans-serif; margin-left: 20%;margin-top: 4%;" >เพิ่มรหัสนักศึกษา</button>
+          <button @click = "addUser()" class="button is-info" style="font-family: 'Kanit', sans-serif; margin-left: 20%;margin-top: 4%;" >เพิ่มรหัสนักศึกษา</button>
     </div>
     <hr style="width: 80%; background-color: orange;" >
     <div style="margin-left: 5%;">
@@ -273,15 +273,16 @@
 </div>
     <!-- ===============================Admin หน้ารายการยืม========================== -->
 <div v-show="shistory">
-<button  @click="backadmin()">กลับ</button>
-<div v-for ="showhistory in history">
+<button  @click="backadmin()" class="button is-danger" style="font-family: 'Kanit', sans-serif;">กลับ</button>
+<div v-for ="showhistory in history" style="font-family: 'Kanit', sans-serif;">
+    {{showhistory.date}}
     {{showhistory.iduser}}
     {{showhistory.floor}}
     {{showhistory.roomnumber}}
     {{showhistory.time}}
-    {{showhistory.date}}
     {{showhistory.trun}}
     {{showhistory.list}}
+    <hr style="width: 80%; background-color: orange;" >
   </div>
 </div>
     <!-- ==================================================================== -->
@@ -601,7 +602,6 @@ export default {
         vm.timeretrun(id, iduser, floor, roomnumber, time, date, mloy, msai, mls, mss, nb, pg, pjt, sd, sk, vga, vslz)
         swal(
           'ลบข้อมูลเรียบร้อยแล้ว',
-          'success'
         )
       })
     },
@@ -827,7 +827,7 @@ export default {
         console.log(this.newIdStudent.Plug)
       }
       if (num === 7) {
-        this.newIdStudent.Projecter = 'โปรเจคเตอร,์'
+        this.newIdStudent.Projecter = 'โปรเจคเตอร์,'
         this.checkpro = false
         console.log(this.newIdStudent.Projecter)
       }
