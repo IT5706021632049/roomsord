@@ -11,12 +11,11 @@
         width: 90%;
         height: 200px;
         margin-left: -5%;
-        margin-top: 0%;
         border-radius: 15px;">
       </div>
         <br>
-        <h1 style="font-size: 20px;  font-family: 'Kanit', sans-serif;margin-top: -55%;margin-left: -5%;">เข้าสู่ระบบ</h1><br>
-        <h3 style="=font-family: 'Kanit', sans-serif; font-size: 15px; font-weight: bold;margin-left: -60%;">E-mail : &nbsp&nbsp</h3>
+        <h1 style="font-size: 20px;  font-family: 'Kanit', sans-serif;margin-top: -15%;margin-left: -5%;">เข้าสู่ระบบ</h1><br>
+        <h3 style="=font-family: 'Kanit', sans-serif; font-size: 15px; font-weight: bold;margin-top: 1%;margin-left: -60%;">E-mail : &nbsp&nbsp</h3>
       <div>
         <input v-model="idlogin" class="label"  style=
         "width: 55%;
@@ -24,20 +23,20 @@
         text-align: center;
         height: 35px;
         margin-left: 8%;
-        margin-top: -7%;
+        margin-top: -2%;
         font-family: 'Kanit', sans-serif;
         font-size: 12px;
         border-radius: 5px;"
         placeholder="57060216XXXXXX@fitm.kmutnb.ac.th">
         <br>
-        <h3 style="font-family: 'Kanit', sans-serif; font-size: 15px; font-weight: bold;margin-left: -63%;">Password : &nbsp&nbsp</h3>
+        <h3 style="font-family: 'Kanit', sans-serif; font-size: 15px; font-weight: bold;margin-top: -1%;margin-left: -63%;">Password : &nbsp&nbsp</h3>
         <input  v-model="passlogin" class="label"  type="password" style=
         "width: 55%;
         border: 1px solid red;
         text-align: center;
         height: 35px;
         margin-left: 8%;
-        margin-top: -7%;
+        margin-top: -2%;
         font-family: 'Kanit', sans-serif;
         font-size: 16px;
         border-radius: 5px;"
@@ -49,7 +48,7 @@
         font-size: 16px;
         font-weight: bold;
         margin-left: -2%;
-        margin-top: -3%;
+        margin-top: -1%;
         font-family: 'Kanit', sans-serif;">
         ยืนยัน</button>
   </div>
@@ -229,7 +228,7 @@
       margin-top: -2%;
       margin-right: 5%;" align="right" >ห้องโสตทัศนูปกรณ์ มหาวิทยาลัยพระจอมเกล้าพระนครเหนือ วิทยาเขต ปราจีนบุรี</h1>
       <button @click = "showhistory()" class="button is-warning" style="font-family: 'Kanit', sans-serif; margin-left: 35%;margin-top: 2%;" >ดูประวัติการยืม-คืน</button>
-      <button  @click = "checklogout" class="button is-danger" style="font-family: 'Kanit', sans-serif;  margin-left: 70%; font-size: 14px; margin-top: -9%;">ออกจากระบบ</button>
+      <button  @click = "checklogout()" class="button is-danger" style="font-family: 'Kanit', sans-serif;  margin-left: 70%; font-size: 14px; margin-top: -9%;">ออกจากระบบ</button>
       <hr style="width: 80%; background-color: orange;" >
       <div style="margin-left: 5%;">
         <u> <h1 style="font-family: 'Kanit', sans-serif;font-size: 14px;">เพิ่ม E-mail รหัสนักศึกษาเข้าระบบ<br><br></u>
@@ -279,6 +278,7 @@
     {{showhistory.iduser}}
     {{showhistory.floor}}
     {{showhistory.roomnumber}}
+    {{showhistory.time}}
     {{showhistory.date}}
     {{showhistory.trun}}
     {{showhistory.list}}
@@ -482,14 +482,35 @@ export default {
       this.listtotal = this.list2 + ' ' + this.list1
       swal({
         title: 'QR Code',
-        text: 'อุปกรณที่ยืม',
+        text: 'อุปกรณ์ที่ยืม,กด OK ออกจากระบบอัตโนมัติ',
         imageUrl: 'https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=' + this.listtotal + '',
         imageWidth: 200,
         imageHeight: 100,
         animation: false
       }).then(function () {
-        swal('เรียบร้อย', 'ออกจากระบบ', 'success')
+        swal('เรียบร้อย', 'ออกจากระบบอัตโนมัติ', 'success')
       })
+      this.login = true
+      this.checkloginpass = false
+      this.login = true
+      this.tempid = ''
+      this.checkmikesai = true
+      this.checkmikeloy = true
+      this.checkmikesaispe = true
+      this.checkmikeloyspe = true
+      this.checkspeaker = true
+      this.checkplug = true
+      this.checkpro = true
+      this.checkvga = true
+      this.checksound = true
+      this.checkvisua = true
+      this.checknotebook = true
+      this.gettime = ''
+      this.selected = ''
+      this.room = ''
+      this.shlist = ''
+      this.idlogin = ''
+      this.passlogin = ''
       var vm = this
       var today = new Date()
       var date = today.getDate() + '/' + (today.getMonth() + 1) + '/' + today.getFullYear()
@@ -579,8 +600,7 @@ export default {
         vm.removelist(id)
         vm.timeretrun(id, iduser, floor, roomnumber, time, date, mloy, msai, mls, mss, nb, pg, pjt, sd, sk, vga, vslz)
         swal(
-          'Deleted!',
-          'Your file has been deleted.',
+          'ลบข้อมูลเรียบร้อยแล้ว',
           'success'
         )
       })
